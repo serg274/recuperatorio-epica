@@ -1,0 +1,19 @@
+{
+  "name": "recuperatorio-epica",
+  "version": "1.0.0",
+  "description": "Recuperatorio epica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serg274/recuperatorio-epica.git"
+  },
+  "author": "Sergio M Ocampo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serg274/recuperatorio-epica/issues"
+  },
+  "homepage": "https://github.com/serg274/recuperatorio-epica#readme"
+}
