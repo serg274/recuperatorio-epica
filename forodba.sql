@@ -41,7 +41,7 @@ CREATE TABLE `publicaciones` (
 --
 
 INSERT INTO `publicaciones` (`id`, `titulo`, `detalle`, `url_imagen`, `fecha_publicacion`, `firma_autor`) VALUES
-(1, 'Vol au vent', '123', 'https://enharinado.com/wp-content/uploads/2022/04/Pan-de-chocolate.jpg', '2023-09-24', 'Apoteotico');
+(1, 'Vol au vent', '123', 'https://img1.freepng.es/20230925/eja/transparent-green-earth-65124fff5f6bf2.3135683116956989433909.jpg', '2023-09-26', 'Sergio M Ocampo');
 
 --
 -- Índices para tablas volcadas
