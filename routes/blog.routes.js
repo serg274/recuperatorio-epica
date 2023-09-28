@@ -1,7 +1,13 @@
 // const router = require('express').Router();
 
 const { Router } = require('express');
-const { getPosts, newPost, updatePost, deletePost } = require('../controllers/blog.controllers');
+const {
+  actualizarPublicacion,
+  crearPublicacion,
+  eliminarPublicacion,
+  obtenerPublicaciones,
+  obtenerPublicacion,
+} = require("../controllers/blog.controllers");
 const router = Router()
 
 // =====================================
