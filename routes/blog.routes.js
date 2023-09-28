@@ -38,7 +38,7 @@ router.get('/admin/editar-publicacion/:id', (req, res)=> {
 // =====================================
 
 // Crear nueva publicación
-router.post('/api/publicacion', crearPublicacion);
+router.post('/api/publicaciones', crearPublicacion);
 
 // Obtener todas las publicaciones
 router.get('/api/publicaciones', obtenerPublicaciones);
