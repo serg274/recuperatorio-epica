@@ -1,83 +1,73 @@
 
-const Publicacion = require('../models/Publicaciones');
-const ctrl = {}
+const ctrl = {};
+const Publicaciones = require("../models/Publicaciones");
 
-ctrl.newPost = async (req, res) => {
-    // const { titulo, detalle, url_imagen, fecha_publicacion, firma_autor } = req.body;
+ctrl.crearPublicacion = async (req, res) => {
+  try {
+    // Se crea una nueva publicación
+    const publicacion = await Publicaciones.create(req.body);
+    res.send({
+      msg: "Publicación creada con éxito",
+      publicacion,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "Error al crear nueva publicación",
+    });
+  }
+};
 
-    try {
-        const publicacion = await Publicacion.create(req.body);
-        
-        await publicacion.save()
+// Se consultan todas las publicaciones
+ctrl.obtenerPublicaciones = async (req, res) => {
+  try {
+    const publicaciones = await Publicaciones.findAll();
+    return res.json(publicaciones);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "Error al obtener las publicaciones",
+    });
+  }
+};
 
-        res.send({ msg: "Publicación creada con éxito", publicacion })
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Error al crear la publicación"
-        })
-    }
-}
+ctrl.actualizarPublicacion = async (req, res) => {
+  const { id } = req.params;
 
-ctrl.getPosts = async (req, res) => {
+  const publicacion = await Publicaciones.findByPk(id);
+  publicacion.set(req.body);
 
-    try {
-        const publicaciones = await Publicacion.findAll();
-        return res.json(publicaciones)
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Error al consultar las publicaciones"
-        })
-    }
+  await publicacion.save(); // Con esta instrucción se guarda en la BD
 
-}
+  res.json({
+    msg: "Publicación actualizada correctamente",
+  });
+};
 
-ctrl.updatePost = async (req, res) => {
+ctrl.eliminarPublicacion = async (req, res) => {
+  const { id } = req.params;
 
-    const { id } = req.params;
+  await Publicaciones.destroy({
+    where: {
+      id,
+    },
+  });
 
-    try {
-        
-        const publicacion = await Publicacion.findByPk(id);
-        publicacion.set(req.body);
+  res.json({
+    msg: "Publicación eliminada correctamente",
+  });
+};
 
-        await publicacion.save();
-
-        return res.json({
-            msg: "Publicación actualizada con éxito!"
-        })
-
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Error al actualizar la publicación"
-        })
-    }
-}
-
-ctrl.deletePost = async (req, res) => {
-
-    const { id } = req.params;
-
-
-    try {
-        await Publicacion.destroy({
-            where: {
-                id
-            }
-        })
-
-        return res.json({
-            msg: 'Publicación eliminada con éxito!'
-        })
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Error al eliminar la publicación"
-        })
-    }
-
-}
+ctrl.obtenerPublicacion = async (req, res) => {
+  try {
+    const publicacion = await Publicaciones.findByPk(req.params.id);
+    return res.json(publicacion);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "Error al obtener la publicación",
+    });
+  }
+};
 
 module.exports = ctrl;

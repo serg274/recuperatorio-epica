@@ -1,7 +1,7 @@
-const { DataTypes, Sequelize, sequelize } = require("../database");
+const { DataTypes, sequelize } = require("../database");
 
-const Publicacion = sequelize.define(
-  "Publicacion",
+const PublicacionSchema = sequelize.define(
+  "Publicaciones",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -9,31 +9,31 @@ const Publicacion = sequelize.define(
       autoIncrement: true,
     },
     titulo: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    detalle: {
-      type: DataTypes.STRING(255),
+    descripcion: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    url_imagen: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    fecha_publicacion: {
+    fecha: {
       type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      allowNull: false,
     },
+
     firma_autor: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    url_imagen: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
-    timestamps: false,
     tableName: "publicaciones",
+    timestamps: false,
   }
 );
 
-module.exports = Publicacion;
+module.exports = PublicacionSchema;

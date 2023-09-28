@@ -1,31 +1,15 @@
-// Instancia de conexión a la Base de Datos
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require("sequelize");
 
-
-const sequelize = new Sequelize(
-  process.env.NAME_DB, 
-  process.env.USER_DB, 
-  process.env.PASS_DB, 
-  {
-    host: process.env.HOST_DB,
-    dialect: process.env.DIALECT_DB,
-    //port: process.env.PORT_DB, //descomentar el puerto para usar el 3307
+// Instancia de conexión a la base de datos
+const sequelize = new Sequelize("pruebadb", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
 });
 
-
-const conectarDB = async () => {
-    try {
-        await sequelize.authenticate();
-        // await sequelize.sync({ force: false });
-        console.log('Conexión a BD exitosa');
-      } catch (error) {
-        console.error('Error:', error);
-      }
-}
+// sequelize.sync()
 
 module.exports = {
-    conectarDB,
-    sequelize,
-    Sequelize,
-    DataTypes
-}
+  sequelize,
+  Sequelize,
+  DataTypes,
+};
